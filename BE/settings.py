@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+  
+
+  
 
     'board',
     'member',
@@ -49,6 +52,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_framework_simplejwt',
 
+
+  
+    'board',
+    'member',
+    'rest_framework',
+  
+
+  
 ]
 
 MIDDLEWARE = [
@@ -237,5 +248,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+AUTH_UWER_MODEL ='member.CustomUser'
 
-AUTH_USER_MODEL='member.CustomUser'
+
