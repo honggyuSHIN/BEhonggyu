@@ -50,13 +50,9 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'rest_framework_simplejwt',
-
-
-  
-    'board',
-    'member',
-    'rest_framework',
+    'django_extensions',
   
 
   
@@ -96,7 +92,7 @@ REST_AUTH = {
 
 
     # 'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
-    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+    'REGISTER_SERIALIZER': 'member.serializers.CustomRegisterSerializer',
 
 
 
@@ -248,6 +244,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_UWER_MODEL ='member.CustomUser'
+AUTH_USER_MODEL ='member.CustomUser'
 
 

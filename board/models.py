@@ -1,5 +1,5 @@
 from django.db import models
-#from member.models import CustomUser
+from member.models import CustomUser
 
 # Create your models here.
 class Board(models.Model):
@@ -36,7 +36,7 @@ class Board(models.Model):
         ('강동구', '강동구')
     ]
 
-    #user = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
     hospital_name = models.CharField(max_length=100)
     region = models.CharField(max_length=100, choices=SEOUL_CHOICES)
     ob = models.CharField(max_length=100, choices=IS_OB_CHOICES) #산과여부
