@@ -7,6 +7,6 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
     email = None
     nickname = models.CharField(max_length=100)
-    university = models.CharField(max_length=50)
+
 
 

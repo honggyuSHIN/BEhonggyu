@@ -11,8 +11,8 @@ from rest_framework.views import APIView
 from .permissions import IsOwnerOrReadOnly
 
 @api_view(['GET','POST']) 
-#@authentication_classes([JWTAuthentication])
-#@permission_classes([IsAuthenticatedOrReadOnly])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def board_list(request):
     if request.method =='GET':
         boards = Board.objects.all()
@@ -29,8 +29,8 @@ def board_list(request):
 한 블로그 조회
 '''
 @api_view(['GET','PUT','DELETE'])
-#@authentication_classes([JWTAuthentication])
-#@permission_classes([IsOwnerOrReadOnly])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsOwnerOrReadOnly])
 def board_detail(request, pk):
     try: 
         board = Board.objects.get(pk=pk)
@@ -52,6 +52,12 @@ def board_detail(request, pk):
     
 @api_view(['GET'])
 def board_region(request, region):
-        boards = Board.objects.filter(region=region)
+        boards = Board.objects.filter(region__contains=region)
         serializer = BoardListSerializer(boards, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def board_name(request, name):
+    boards = Board.objects.filter(hospital_name__contains=name)
+    serializer = BoardListSerializer(boards, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

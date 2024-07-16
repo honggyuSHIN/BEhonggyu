@@ -6,7 +6,8 @@ app_name = 'board'
 
 urlpatterns = [
     path('home/', board_list),
-    path('home/detail/<int:pk>/',board_detail),
-    path('home/region/<str:region>/', board_region),
+    path('home/<int:pk>/',board_detail),
+    path('region/<str:region>/', board_region),
+    path('name/<str:name>/',board_name)
 
 ]
