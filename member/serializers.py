@@ -4,8 +4,6 @@ from rest_framework import serializers
 
 class CustomRegisterSerializer(RegisterSerializer):
     nickname = serializers.CharField(max_length=100)
-    university = serializers.CharField(max_length=50)
-    location = serializers.CharField(max_length=200)
     
     def get_cleaned_data(self):
         super(CustomRegisterSerializer, self).get_cleaned_data()
@@ -14,8 +12,8 @@ class CustomRegisterSerializer(RegisterSerializer):
             'password1': self.validated_data.get('password1', ''),
             'password2': self.validated_data.get('password2', ''),
             'nickname': self.validated_data.get('nickname', ''),
-            'university': self.validated_data.get('university', ''),
-            'location': self.validated_data.get('location', ''),
+            #'university': self.validated_data.get('university', ''),
+            #'location': self.validated_data.get('location', ''),
         }
     
     def save(self, request):
@@ -24,8 +22,8 @@ class CustomRegisterSerializer(RegisterSerializer):
         self.cleaned_data = self.get_cleaned_data()
         user.username = self.cleaned_data.get('username')
         user.nickname = self.cleaned_data.get('nickname')
-        user.university = self.cleaned_data.get('university')
-        user.location = self.cleaned_data.get('location')
+        #user.university = self.cleaned_data.get('university')
+        #user.location = self.cleaned_data.get('location')
         user.save()
         adapter.save_user(request, user, self)
         return user
@@ -36,4 +34,4 @@ from .models import CustomUser
 class CustomUserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'password', 'nickname', 'university', 'location']
+        fields = ['id', 'username', 'password', 'nickname']
